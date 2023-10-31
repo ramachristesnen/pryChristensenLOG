@@ -11,12 +11,13 @@ using System.Windows.Forms;
 namespace pryChristensenLOG
 {
     public partial class frmPrincipal : Form
+
     {
         public frmPrincipal()
         {
             InitializeComponent();
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             clsAccesoBD objAccesoBD = new clsAccesoBD();
@@ -40,7 +41,20 @@ namespace pryChristensenLOG
         {
             clsAccesoBD objAccesoBD = new clsAccesoBD();
             objAccesoBD.TraerDatos(dgvRegistros);
-            lblDatos.Text = objAccesoBD.DatosExtraidos;
+            
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            clsAccesoBD objAccesoBD;
+
+            objAccesoBD.TraerDatosDataSet(dgvRegistros);
+
+            if (txtNombre.Text != "")
+            {
+                objAccesoBD.RegistrarDatosDataSet(txtNombre.Text);
+            }
+        }
+
     }
 }

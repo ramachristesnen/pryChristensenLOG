@@ -33,7 +33,8 @@
             this.tsslBase = new System.Windows.Forms.ToolStripStatusLabel();
             this.dgvRegistros = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-            this.lblDatos = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistros)).BeginInit();
             this.SuspendLayout();
@@ -70,9 +71,9 @@
             // dgvRegistros
             // 
             this.dgvRegistros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRegistros.Location = new System.Drawing.Point(42, 96);
+            this.dgvRegistros.Location = new System.Drawing.Point(0, 81);
             this.dgvRegistros.Name = "dgvRegistros";
-            this.dgvRegistros.Size = new System.Drawing.Size(514, 228);
+            this.dgvRegistros.Size = new System.Drawing.Size(556, 228);
             this.dgvRegistros.TabIndex = 5;
             // 
             // button1
@@ -89,21 +90,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // lblDatos
+            // button2
             // 
-            this.lblDatos.AutoSize = true;
-            this.lblDatos.Location = new System.Drawing.Point(401, 16);
-            this.lblDatos.Name = "lblDatos";
-            this.lblDatos.Size = new System.Drawing.Size(35, 13);
-            this.lblDatos.TabIndex = 7;
-            this.lblDatos.Text = "label1";
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Aqua;
+            this.button2.Image = global::pryChristensenLOG.Properties.Resources.descarga;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.Location = new System.Drawing.Point(403, 1);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(153, 61);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Registrar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(12, 344);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(140, 20);
+            this.txtNombre.TabIndex = 8;
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(612, 392);
-            this.Controls.Add(this.lblDatos);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvRegistros);
             this.Controls.Add(this.statusStrip1);
@@ -127,7 +141,8 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslBase;
         private System.Windows.Forms.DataGridView dgvRegistros;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label lblDatos;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtNombre;
     }
 }
 

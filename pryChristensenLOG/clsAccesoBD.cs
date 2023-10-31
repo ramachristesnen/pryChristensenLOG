@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms;
+using System.Data;
 
 namespace pryChristensenLOG
 {
@@ -15,14 +16,16 @@ namespace pryChristensenLOG
         public string Errores;
         public string DatosExtraidos;
 
-
         OleDbConnection conexionBD;
         public string rutaArchivo;
         OleDbCommand comandoBD;
         OleDbDataReader lectorBD;
 
-        
-       
+        OleDbDataAdapter adaptadorDS;
+        DataSet objDataSet = new DataSet();
+
+
+
 
 
         public void ConectarBaseDatos()
@@ -97,6 +100,72 @@ namespace pryChristensenLOG
 
 
         }
-        
+        public void TraerDatosDataSet(DataGridView grilla)
+        {
+            try
+            {
+                ConectarBaseDatos();
+                comandoBD = new OleDbCommand();
+
+                comandoBD.Connection = conexionBD;
+                comandoBD.CommandType = System.Data.CommandType.TableDirect;
+                comandoBD.CommandText = "Registros";
+
+                adaptadorDS = new OleDbDataAdapter(comandoBD);
+                adaptadorDS.Fill(objDataSet, "Registros");
+
+                if (objDataSet.Tables["Registros"].Rows.Count > 0)
+                {
+                    grilla.Columns.Add("ID", "ID");
+                    grilla.Columns.Add("Categoria", "Categoria");
+                    grilla.Columns.Add("Fecha/Hora", "Fecha/Hora");
+                    grilla.Columns.Add("Descripcion", "Descripcion");
+
+                    foreach (DataRow fila in objDataSet.Tables[0].Rows)
+                    {
+                        grilla.Rows.Add(fila[0], fila[1], fila[2], fila[3]);
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
         }
+        public void RegistrarDatosDataSet(string nombre)
+        {
+            try
+            {
+                //ConectarBaseDatos();
+                comandoBD = new OleDbCommand();
+
+                comandoBD.Connection = conexionBD;
+                comandoBD.CommandType = System.Data.CommandType.TableDirect;
+                comandoBD.CommandText = "SOCIOS";
+
+                adaptadorDS = new OleDbDataAdapter(comandoBD);
+                adaptadorDS.Fill(objDataSet, "SOCIOS");
+
+                DataTable tablaGrabar = objDataSet.Tables[0];
+                DataRow filaGrabar = tablaGrabar.NewRow();
+                filaGrabar[1] = nombre;
+                tablaGrabar.Rows.Add(filaGrabar);
+
+                OleDbCommandBuilder constructor = new OleDbCommandBuilder(adaptadorDS);
+                adaptadorDS.Update(objDataSet);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
+
+    }
 }
